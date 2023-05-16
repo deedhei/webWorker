@@ -10,6 +10,10 @@ if (window.Worker) {
     console.log("first", e);
   };
   second.onchange = function (e) {
+    worker.postMessage([first.value, second.value]);
     console.log("second", e);
+  };
+  worker.onmessage = function (e) {
+    result.textContent = e.data;
   };
 }
